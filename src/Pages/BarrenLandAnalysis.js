@@ -126,13 +126,13 @@ class BarrnLandAnalysis extends Component {
     //Checks input for any errors and if it is a valid input. 
     IsValidInput(plot) {
         var barrenLand = this.state.barrenLand;
-        if (barrenLand.indexOf(plot) > -1) { ShowDialogBox('Invalid Input', 'Area already exists.', 'Ok', '', 'GoToAssetList', null); return false; }  //alert("Invalid Input: Area already exists.");
+        if (barrenLand.indexOf(plot) > -1) { ShowDialogBox('Invalid Input', 'Area already exists.'); return false; }  //alert("Invalid Input: Area already exists.");
 
         var c = plot.split(" ");
-        if (c.length !== 4) { alert("Invalid Input: Input requires four numbers seperated by a space."); return false;}
-        if (isNaN(c[0]) || isNaN(c[1]) || isNaN(c[2]) || isNaN(c[3])) { alert("Invalid Input: Input is not a number."); return false; }
-        if (parseInt(c[0], 10) >= parseInt(c[2], 10) || parseInt(c[1], 10) >= parseInt(c[3], 10)) { alert("Invalid Input: Bottom Left X, Bottom Left Y, Top Right X, Top Right Y."); return false;}
-        if (parseInt(c[0], 10) < 0 || parseInt(c[1], 10) < 0 || parseInt(c[2], 10) >= landWidth || parseInt(c[3], 10) >= landLength) { alert("Invalid Input: Input exceeds farm area."); return false; }
+        if (c.length !== 4) { ShowDialogBox('Invalid Input', "Input requires four numbers seperated by a space."); return false;}
+        if (isNaN(c[0]) || isNaN(c[1]) || isNaN(c[2]) || isNaN(c[3])) { ShowDialogBox('Invalid Input', "Input is not a number."); return false; }
+        if (parseInt(c[0], 10) >= parseInt(c[2], 10) || parseInt(c[1], 10) >= parseInt(c[3], 10)) { ShowDialogBox('Invalid Input', "Input does not contain the bottom left and the top right coordinates in the correct order. Each number is seperated by a space and contains the Bottom Left X, Bottom Left Y, Top Right X, Top Right Y."); return false;}
+        if (parseInt(c[0], 10) < 0 || parseInt(c[1], 10) < 0 || parseInt(c[2], 10) >= landWidth || parseInt(c[3], 10) >= landLength) { ShowDialogBox('Invalid Input', "Input exceeds farm area."); return false; }
         return true;
     }
 
@@ -177,7 +177,7 @@ class BarrnLandAnalysis extends Component {
         if (e.target.className === "BarrenLandListItem" || e.target.parentElement.className === "BarrenLandListItem") {
             var id;
             e.target.className === "BarrenLandListItem" ? id = e.target.id : id = e.target.parentElement.id;
-            document.getElementById(id + "Plot").style.backgroundColor = "#A8A359";
+            document.getElementById(id + "Plot").style.backgroundColor = "#B5A515";
         }
     }
 

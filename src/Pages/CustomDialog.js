@@ -1,20 +1,11 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-export const ShowDialogBox = (title, content, btn1text, btn2text, functionText, parameterList) => {
+import 'jquery-ui-bundle';
+import 'jquery-ui-bundle/jquery-ui.css';
+export const ShowDialogBox = (title, content) => {
     var btn1css;
     var btn2css;
 
-    if (btn1text === '') {
-        btn1css = "hidecss";
-    } else {
-        btn1css = "showcss";
-    }
-
-    if (btn2text === '') {
-        btn2css = "hidecss";
-    } else {
-        btn2css = "showcss";
-    }
     $("#lblMessage").html(content);
 
     $("#dialog").dialog({
@@ -25,20 +16,9 @@ export const ShowDialogBox = (title, content, btn1text, btn2text, functionText, 
         height: 'auto',
         bgiframe: false,
         hide: { effect: 'scale', duration: 400 },
-
         buttons: [
             {
-                text: btn1text,
-                "class": btn1css,
-                click: function () {
-
-                    $("#dialog").dialog('close');
-
-                }
-            },
-            {
-                text: btn2text,
-                "class": btn2css,
+                text: "OK",
                 click: function () {
                     $("#dialog").dialog('close');
                 }

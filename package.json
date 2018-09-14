@@ -6,6 +6,7 @@
   "dependencies": {
     "gh-pages": "^1.2.0",
     "jquery": "^3.3.1",
+    "jquery-ui-bundle": "^1.12.1-migrate",
     "npm": "^5.0.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
