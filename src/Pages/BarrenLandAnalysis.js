@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import '../StyleSheets/BarrenLandAnalysis.css';
 import { ShowDialogBox } from './CustomDialog';
 
-var landLength = 600;
-var landWidth = 400;
-
 var multiplier= 0.8333333333;
 
 class BarrnLandAnalysis extends Component {
@@ -15,15 +12,51 @@ class BarrnLandAnalysis extends Component {
 
         this.state = {
             land: this.SetupDefaultLand(400, 600), 
-            barrenLand: []
+            barrenLand: [],
+            landWidth: 400,
+            landLength: 600,            
+            landWidthValue: "400",
+            landLengthValue: "600"
         };
     }
 
-    SetupDefaultLand(landWidth, landLength) {
+    onChange(changeValue, e) {
+        var value = e.target.value;
+        if (changeValue === 'width') {
+            if (value > 0) {
+                this.setState({ landWidth: value, landWidthValue: value, land: this.SetupDefaultLand(value, this.state.landLength), barrenLand: [] });
+                if (value < 500 && value >= this.state.landLength) {
+                    multiplier = 1;
+                }
+                else if (value > 500 && value >= this.state.landLength) {
+                    multiplier = 500 / value;
+                }
+            }
+            else if (value > -1 || value === "" || value === 0) {
+                this.setState({ landWidthValue: value});
+            }
+        }
+        else if (changeValue === 'length') {
+            if (value > 0) {
+                this.setState({ landLength: value, landLengthValue: value, land: this.SetupDefaultLand(this.state.landWidth, value), barrenLand: [] });  
+                if (value < 500 && value >= this.state.landWidth) {
+                    multiplier = 1;
+                }
+                else if (value > 500 && value >= this.state.landWidth) {
+                    multiplier = 500 / value;
+                }
+            }
+            else if (value > -1 || value === "" || value === 0) {
+                this.setState({ landLengthValue: value });
+            }
+        }
+    }
+
+    SetupDefaultLand(width, length) {
         var land = [];
-        for (var x = 0; x < landWidth; x++) {
+        for (var x = 0; x < width; x++) {
             land[x] = [];
-            for (var y = 0; y < landLength; y++) {
+            for (var y = 0; y < length; y++) {
                 land[x][y] = 0;
             }
         }
@@ -86,13 +119,13 @@ class BarrnLandAnalysis extends Component {
                     queue.push({ x: n.x - 1, y: n.y });
                 }
             }
-            if (n.x < landWidth - 1) {
+            if (n.x < this.state.landWidth - 1) {
                 if (land[n.x + 1][n.y] === targetPlot) {//10.     If the color of the node to the east of n is target - color, set the color of that node to replacement - color and add that node to the end of Q.
                     land[n.x + 1][n.y] = newPlot;
                     queue.push({ x: n.x + 1, y: n.y });
                 }
             }
-            if (n.y < landLength - 1) {
+            if (n.y < this.state.landLength - 1) {
                 if (land[n.x][n.y + 1] === targetPlot) {//11.     If the color of the node to the north of n is target - color, set the color of that node to replacement - color and add that node to the end of Q.
                     land[n.x][n.y + 1] = newPlot;
                     queue.push({ x: n.x, y: n.y + 1 });
@@ -132,7 +165,7 @@ class BarrnLandAnalysis extends Component {
         if (c.length !== 4) { ShowDialogBox('Invalid Input', "Input requires four numbers seperated by a space."); return false;}
         if (isNaN(c[0]) || isNaN(c[1]) || isNaN(c[2]) || isNaN(c[3])) { ShowDialogBox('Invalid Input', "Input is not a number."); return false; }
         if (parseInt(c[0], 10) >= parseInt(c[2], 10) || parseInt(c[1], 10) >= parseInt(c[3], 10)) { ShowDialogBox('Invalid Input', "Input does not contain the bottom left and the top right coordinates in the correct order. Each number is seperated by a space and contains the Bottom Left X, Bottom Left Y, Top Right X, Top Right Y."); return false;}
-        if (parseInt(c[0], 10) < 0 || parseInt(c[1], 10) < 0 || parseInt(c[2], 10) >= landWidth || parseInt(c[3], 10) >= landLength) { ShowDialogBox('Invalid Input', "Input exceeds farm area."); return false; }
+        if (parseInt(c[0], 10) < 0 || parseInt(c[1], 10) < 0 || parseInt(c[2], 10) >= this.state.landWidth || parseInt(c[3], 10) >= this.state.landLength) { ShowDialogBox('Invalid Input', "Input exceeds farm area."); return false; }
         return true;
     }
 
@@ -177,7 +210,7 @@ class BarrnLandAnalysis extends Component {
         if (e.target.className === "BarrenLandListItem" || e.target.parentElement.className === "BarrenLandListItem") {
             var id;
             e.target.className === "BarrenLandListItem" ? id = e.target.id : id = e.target.parentElement.id;
-            document.getElementById(id + "Plot").style.backgroundColor = "#B5A515";
+            document.getElementById(id + "Plot").style.backgroundColor = "#D72E10";
         }
     }
 
@@ -188,23 +221,6 @@ class BarrnLandAnalysis extends Component {
             e.target.className === "BarrenLandListItem" ? id = e.target.id : id = e.target.parentElement.id;
             document.getElementById(id + "Plot").style.backgroundColor = "#56290A";
         }
-    }
-
-    //Allows the user to set land area
-    SetLandArea() {
-        var width = parseInt(document.getElementById("BarrenLandWidthInput").value, 10);
-        var length = parseInt(document.getElementById("BarrenLandLengthInput").value, 10);
-
-        multiplier = 1;
-
-        if (width > 575) { multiplier = 575/width; }
-        if (length > 500 && length > width) { multiplier = 500/length; }
-
-        width > 0 ? landWidth = width : null;
-        length > 0 ? landLength = length : null;
-        
-        console.log(landWidth + " X " + landLength);
-        this.setState({ land: this.SetupDefaultLand(landWidth, landLength), barrenLand: [] });
     }
 
     //Counts the number of adjacent fertile lands and returns the area of each sorted from least to greatest.
@@ -218,8 +234,8 @@ class BarrnLandAnalysis extends Component {
         //That fertile plot will then be sent to the ForestFireFillAlgorithm where it and all adjacent plots are set to a newPlot group number.
         //A newPlot group number is set and the itteration continues until all fertile plots have been assigned a group number
         //0 = unsigned fertile plots, 1 = barren plots, 2 and above = assigned fertile plot group numbers
-        for (var x = 0; x < landWidth; x++) {
-            for (var y = 0; y < landLength; y++) {
+        for (var x = 0; x < this.state.landWidth; x++) {
+            for (var y = 0; y < this.state.landLength; y++) {
                 if (land[x][y] === 0) {
                     land = this.ForestFireAlgorithm(land, x, y, 0, newPlot);
                     newPlot++;
@@ -230,7 +246,10 @@ class BarrnLandAnalysis extends Component {
         plots.splice(0, 2); //Removes the first two groups, 0 and 1, leaving the group assigned fertile plots to be sorted least to greatest below. 
         plots.sort(function sortNumber(a, b) { return a - b; });
 
-        return <label>{plots.join()}</label>;
+        var list = [];
+        plots.forEach(plot => list.push(<li>{plot}</li>));
+        //plots.join()
+        return <ul style={{ width: '240px', height: '150px', overflowY: 'auto' }}>{list}</ul>;
     }
 
     //Interactive list to view, highlight, or remove added areas of barren land.
@@ -245,7 +264,7 @@ class BarrnLandAnalysis extends Component {
                 </tr>);
         }
 
-        return<tbody>{list}</tbody>;
+        return <tbody>{list}</tbody>;
     }
 
     //Visual representation of the barren land user inputs.
@@ -263,25 +282,35 @@ class BarrnLandAnalysis extends Component {
         return (
             <div className="BarrenLandAnalysisContainer">
                 <h1>Barren Land Analysis</h1>
-
-                {this.RenderFertileLandAreas(this)}
+                <p style={{fontSize: '11px'}}>Input each barren land area as a string consisiting of 4 numbers seperated by a space. The numbers represent the Bottom Left X, Bottom Left Y, Top Right X, and Top Right Y coordinates of an area. Example: 0 292 399 307. Entered areas will be listed and rendered in the land area. The results will list the area of adjacent fertile plots in ascending order.</p>
 
                 <div className="BarrenLandUXControl">
-                    <table style={{width: '225px'}}>
-                        <thead>
-                            <tr>
-                                <th style={{ width: '160px' }}><input className="BarrenLandInput" id="BarrenLandAreaInput" placeholder="0 292 399 307" type="text" onKeyDown={function (e) { if (e.keyCode === 13) { document.getElementById("AddBarrenLandBtn").click(); } }} /></th>
-                                <th><button className="BarrenLandButton" id="AddBarrenLandBtn" onClick={this.AddBarrenLand.bind(this)}>ADD</button></th>
-                            </tr>
-                        </thead>
-                        {this.RenderBarrenLandList(this)}
-                    </table>
+                    <div>
+                        <h3>Barren Land</h3>
+                        <table style={{width: '225px'}}>
+                            <thead>
+                                <tr>
+                                    <th style={{ width: '160px' }}><input className="BarrenLandInput" id="BarrenLandAreaInput" placeholder="Barren Land Coordinates" type="text" onKeyDown={function (e) { if (e.keyCode === 13) { document.getElementById("AddBarrenLandBtn").click(); } }} /></th>
+                                    <th><button className="BarrenLandButton" id="AddBarrenLandBtn" onClick={this.AddBarrenLand.bind(this)}>ADD</button></th>
+                                </tr>
+                            </thead>
+                                                   
+                        </table>
+
+                        <div style={{ width: '240px', height: '150px', overflowY: 'auto' }}>
+                            <table style={{ width: '225px' }}>
+                                 {this.RenderBarrenLandList(this)}                                                  
+                            </table>
+                        </div>
+
+                        <h3>Fertile Land</h3>
+                        {this.RenderFertileLandAreas(this)}
+                    </div>
                     <div style={{ flex: '1', marginLeft: '5px'}}>
                         <div style={{ margin: '5px' }}>
-                            <input className="BarrenLandInput" id="BarrenLandWidthInput" placeholder="WIDTH" type="number" /> X <input className="BarrenLandInput" id="BarrenLandLengthInput" placeholder="LENGTH" type="number" />
-                            <button className="BarrenLandButton" onClick={this.SetLandArea.bind(this)} style={{ marginLeft: '5px'}}>SAVE</button>
+                            <input className="BarrenLandInput" id="BarrenLandWidthInput" placeholder="WIDTH" type="number" value={this.state.landWidthValue} onChange={this.onChange.bind(this, "width")} /> X <input className="BarrenLandInput" id="BarrenLandLengthInput" placeholder="LENGTH" type="number" value={this.state.landLengthValue} onChange={this.onChange.bind(this, "length")}/>
                         </div>
-                        <div className="LandGraph" style={{ width: landWidth * multiplier + 'px', height: landLength * multiplier + 'px'}}>
+                        <div className="LandGraph" style={{ width: this.state.landWidth * multiplier + 'px', height: this.state.landLength * multiplier + 'px'}}>
                             {this.RenderBarrenLandArea(this)}
                         </div>
                     </div>

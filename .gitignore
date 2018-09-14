@@ -20,3 +20,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+/src/StyleSheets/DocumentSearch.css
+/src/StyleSheets/MyRetail.css
+
+/src/Pages/DocumentSearch.js
+/src/Pages/MyRetail.js
