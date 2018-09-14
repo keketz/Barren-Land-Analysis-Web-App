@@ -37,3 +37,11 @@ nav {
         font-variant-caps: all-small-caps;
         vertical-align: top;
     }
+
+.showcss {
+    display: block;
+}
+
+.hidecss {
+    display: none;
+}

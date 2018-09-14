@@ -23,19 +23,28 @@
     -->
     <title>Target Tech Talent Day</title>
 </head>
-  <body>
-      <noscript>
-          You need to enable JavaScript to run this app.
-      </noscript>
-      <img class="WebBannerImage" src="%PUBLIC_URL%/FarmBanner.jpg" />
-      <nav>
-          <a href="/target-tech-talent-day/">Home</a> |
-          <a href="/target-tech-talent-day/barren-land-analysis">Barren Land</a> |
-          <a href="/target-tech-talent-day/document-search">Document Search</a> |
-          <a href="/target-tech-talent-day/myRetail">myRetail</a>
-      </nav>
-      <div id="appRoot"></div>
-      <!--
+<body>
+    <noscript>
+        You need to enable JavaScript to run this app.
+    </noscript>
+    <img class="WebBannerImage" src="%PUBLIC_URL%/FarmBanner.jpg" />
+    <nav>
+        <a href="/target-tech-talent-day/">Home</a> |
+        <a href="/target-tech-talent-day/barren-land-analysis">Barren Land</a> |
+        <a href="/target-tech-talent-day/document-search">Document Search</a> |
+        <a href="/target-tech-talent-day/myRetail">myRetail</a>
+    </nav>
+    <div id="appRoot"></div>
+    <div id="dialog" title="Alert message" style="display: none; position: absolute; z-index: 1;">
+        <div class="ui-dialog-content ui-widget-content">
+            <p>
+                <span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0"></span>
+                <label id="lblMessage">
+                </label>
+            </p>
+        </div>
+    </div>
+    <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -45,5 +54,5 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
+</body>
 </html>
