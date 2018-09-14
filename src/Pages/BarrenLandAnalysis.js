@@ -162,9 +162,9 @@ class BarrnLandAnalysis extends Component {
         if (barrenLand.indexOf(plot) > -1) { ShowDialogBox('Invalid Input', 'Area already exists.'); return false; }  //alert("Invalid Input: Area already exists.");
 
         var c = plot.split(" ");
-        if (c.length !== 4) { ShowDialogBox('Invalid Input', "Input requires four numbers seperated by a space."); return false;}
+        if (c.length !== 4) { ShowDialogBox('Invalid Input', "Input requires four numbers separated by a space."); return false;}
         if (isNaN(c[0]) || isNaN(c[1]) || isNaN(c[2]) || isNaN(c[3])) { ShowDialogBox('Invalid Input', "Input is not a number."); return false; }
-        if (parseInt(c[0], 10) >= parseInt(c[2], 10) || parseInt(c[1], 10) >= parseInt(c[3], 10)) { ShowDialogBox('Invalid Input', "Input does not contain the bottom left and the top right coordinates in the correct order. Each number is seperated by a space and contains the Bottom Left X, Bottom Left Y, Top Right X, Top Right Y."); return false;}
+        if (parseInt(c[0], 10) >= parseInt(c[2], 10) || parseInt(c[1], 10) >= parseInt(c[3], 10)) { ShowDialogBox('Invalid Input', "Input does not contain the bottom left and the top right coordinates in the correct order. Each number is separated by a space and contains the Bottom Left X, Bottom Left Y, Top Right X, Top Right Y."); return false;}
         if (parseInt(c[0], 10) < 0 || parseInt(c[1], 10) < 0 || parseInt(c[2], 10) >= this.state.landWidth || parseInt(c[3], 10) >= this.state.landLength) { ShowDialogBox('Invalid Input', "Input exceeds farm area."); return false; }
         return true;
     }
@@ -282,7 +282,7 @@ class BarrnLandAnalysis extends Component {
         return (
             <div className="BarrenLandAnalysisContainer">
                 <h1>Barren Land Analysis</h1>
-                <p style={{fontSize: '11px'}}>Input each barren land area as a string consisiting of 4 numbers seperated by a space. The numbers represent the Bottom Left X, Bottom Left Y, Top Right X, and Top Right Y coordinates of an area. Example: 0 292 399 307. Entered areas will be listed and rendered in the land area. The results will list the area of adjacent fertile plots in ascending order.</p>
+                <p style={{fontSize: '11px'}}>Input each barren land area as a string consisting of 4 numbers separated by a space. The numbers represent the Bottom Left X, Bottom Left Y, Top Right X, and Top Right Y coordinates of an area. Example: 0 292 399 307. Entered areas will be listed and rendered in the land area. The results will list the area of adjacent fertile plots in ascending order.</p>
 
                 <div className="BarrenLandUXControl">
                     <div>
