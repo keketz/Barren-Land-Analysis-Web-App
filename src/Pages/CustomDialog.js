@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 import $ from 'jquery';
 export const ShowDialogBox = (title, content, btn1text, btn2text, functionText, parameterList) => {
     var btn1css;
