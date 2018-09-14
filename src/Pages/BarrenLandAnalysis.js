@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../StyleSheets/BarrenLandAnalysis.css';
+import { ShowDialogBox } from './CustomDialog';
 
 var landLength = 600;
 var landWidth = 400;
@@ -125,7 +126,7 @@ class BarrnLandAnalysis extends Component {
     //Checks input for any errors and if it is a valid input. 
     IsValidInput(plot) {
         var barrenLand = this.state.barrenLand;
-        if (barrenLand.indexOf(plot) > -1) { alert("Invalid Input: Area already exists."); return false; }
+        if (barrenLand.indexOf(plot) > -1) { ShowDialogBox('Invalid Input', 'Area already exists.', 'Ok', '', 'GoToAssetList', null); return false; }  //alert("Invalid Input: Area already exists.");
 
         var c = plot.split(" ");
         if (c.length !== 4) { alert("Invalid Input: Input requires four numbers seperated by a space."); return false;}
