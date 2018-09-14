@@ -13,10 +13,10 @@ import { BrowserRouter, HashRouter, Route, Switch } from 'react-router-dom';
 ReactDOM.render(
     <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
-            <Route exact path='/' component={Home} />
-            <Route path='/barren-land-analysis' component={BarrenLandAnalysis} />
-            <Route path='/document-search' component={DocumentSearch} />
-            <Route path='/myRetail' component={MyRetail} />
+            <Route exact path='/target-tech-talent-day/' component={Home} />
+            <Route path='/target-tech-talent-day/barren-land-analysis' component={BarrenLandAnalysis} />
+            <Route path='/target-tech-talent-day/document-search' component={DocumentSearch} />
+            <Route path='/target-tech-talent-day/myRetail' component={MyRetail} />
         </Switch>
     </BrowserRouter>
 , document.getElementById('appRoot'));
