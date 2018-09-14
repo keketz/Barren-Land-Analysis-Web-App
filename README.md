@@ -53,9 +53,9 @@ If you would like to run this project locally, you will need the following insta
 * Yarn
 
 ## Installing
-Open CMD and navigate to the project folder.
-Enter 'yarn' to install all dependencies locally
-Enter 'yarn start' and open your web browser to 'http://localhost:3000/'
+	* Open CMD and navigate to the project folder.
+	* Enter 'yarn' to install all dependencies locally
+	* Enter 'yarn start' and open your web browser to 'http://localhost:3000/'
 
 
 
