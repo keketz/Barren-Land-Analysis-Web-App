@@ -33,12 +33,14 @@ Output all the fertile land area in square meters, sorted from smallest area to 
 separated by a space.
 
 Sample Inputs
-	1. 0 292 399 307
-	2. 48 192 351 207,48 392 351 407,120 52 135 547,260 52 275 547
+
+1. 0 292 399 307
+2. 48 192 351 207,48 392 351 407,120 52 135 547,260 52 275 547
 
 Sample Outputs
-	1. 116800 116800
-	2. 22816 192608
+
+1. 116800 116800
+2. 22816 192608
 
 ## Getting Started
 You can view the project on [Git Hub Pages]('https://keketz.github.io/target-tech-talent-day/)
