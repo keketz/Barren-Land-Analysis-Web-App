@@ -26,3 +26,4 @@ yarn-error.log*
 
 /src/Pages/DocumentSearch.js
 /src/Pages/MyRetail.js
+/src/Pages/BarrenLandAnalysis.js.orig
