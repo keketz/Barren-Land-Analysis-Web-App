@@ -63,7 +63,7 @@ class App extends Component {
                 <b><a href="https://en.wikipedia.org/wiki/Flood_fill" target="_blank">Flood Fill wiki page</a> listed a few pseudocode solutions. I tried a few after my initial solution destroyed everything in its path.</b>
                 <ul>
                     <li>First tired the Stack-based recursive implementation(four-way). Results were better but it crashed with a larger area due to a StackOverflowError. Java was able to handle this algorithm but required more memory. Javascript could not.</li>
-                    <li>Then the Forest Fire Algoithm which uses a loop to itterate through a queue of plots. I modified this version to group all adjacent plots and assign each a group number.</li>
+                    <li>Then the Forest Fire Algorithm which uses a loop to iterate through a queue of plots. I modified this version to group all adjacent plots and assign each a group number.</li>
                 </ul>
 
                 <b>Forest Fire Algorithm (node, target-color, replacement-color)</b>

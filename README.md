@@ -71,7 +71,7 @@ Enter 'yarn start' and open your web browser to 'http://localhost:3000/'
 ## Implementation
 [Flood Fill wiki page](https://en.wikipedia.org/wiki/Flood_fill) listed a few pseudocode solutions. I tried a few after my initial solution destroyed everything in its path.
 * First tired the Stack-based recursive implementation(four-way). Results were better but it crashed with a larger area due to a StackOverflowError. Java was able to handle this algorithm but required more memory. Javascript could not.
-* Then the Forest Fire Algoithm which uses a loop to itterate through a queue of plots. I modified this version to group all adjacent plots and assign each a group number.
+* Then the Forest Fire Algorithm which uses a loop to iterate through a queue of plots. I modified this version to group all adjacent plots and assign each a group number.
 
 Forest Fire Algorithm (node, target-color, replacement-color):
   1. If target-color is equal to replacement-color, return.
