@@ -1,0 +1,70 @@
+:root {
+    --Crimson: #D72E10;
+    --LightGoldenRod: #B5A515;
+    --GoldenRod: #D8A715;
+    --DarkGoldenRod: #A37A16;
+    --Brown: #56290A;
+    --Olive: #A8A359;
+    --LightOlive: #FBFAF0;
+}
+
+.BarrenLandAnalysisContainer {
+    text-align: center;
+}
+
+    .BarrenLandAnalysisContainer h1 {
+        color: var(--Olive);
+    }
+
+.ScrollableDiv{
+    width: 575px;
+    height: 500px;
+    overflow: auto;
+}
+
+.LandGraph {
+    border: 1px solid var(--Brown);
+    position: relative;
+    margin: auto;
+    background-color: var(--Olive);
+}
+
+.BarrenLandAreaDiv {
+    background-color: var(--Brown);
+    position: absolute;
+}
+
+.BarrenLandListItem {
+    font-size: 13px;
+    text-align: center;
+}
+
+.BarrenLandListItem:hover {
+    background-color: olive;
+}
+
+.BarrenLandUXControl {
+    display: flex;
+    flex-direction: row;
+}
+
+.BarrenLandInput {
+    border: 1px solid var(--Brown);
+    text-align: center;
+    width: 150px;
+}
+.BarrenLandListLabel {
+    text-align: center;
+    width: 150px;
+}
+
+.BarrenLandButton {
+    font-weight: bold;
+    border: 1px solid var(--Brown);
+    border-radius: 5px;
+    padding: 2px;
+    min-width: 16px;
+    max-height: 16px;
+    font-size: 10px;
+    background-color: var(--Olive);
+}

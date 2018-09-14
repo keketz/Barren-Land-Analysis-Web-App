@@ -1,0 +1,39 @@
+:root {
+    --Crimson: #D72E10;
+    --LightGoldenRod: #B5A515;
+    --GoldenRod: #D8A715;
+    --DarkGoldenRod: #A37A16;
+    --Brown: #56290A;
+    --Olive: #A8A359;
+    --LightOlive: #FBFAF0;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    width: 800px;
+    margin: auto;
+    font-family: Garamond;
+    background-color: var(--LightOlive);
+}
+
+.WebBannerImage {
+    width: 100%;
+}
+
+nav {
+    margin-top: -4px;
+    background-color: var(--Brown);
+    text-align: center;
+    color: var(--LightGoldenRod);
+    font-size: 14px;
+}
+
+    nav a {
+        color: var(--LightGoldenRod);
+        font-size: 14px;
+        text-decoration: none;
+        font-weight: bold;
+        font-variant-caps: all-small-caps;
+        vertical-align: top;
+    }
