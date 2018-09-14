@@ -17,6 +17,10 @@ body {
     background-color: var(--LightOlive);
 }
 
+    body #appRoot {
+        padding: 10px;
+    }
+
 .WebBannerImage {
     width: 100%;
 }
