@@ -1,0 +1,39 @@
+:root {
+    --Crimson: #D72E10;
+    --LightGoldenRod: #B5A515;
+    --GoldenRod: #D8A715;
+    --DarkGoldenRod: #A37A16;
+    --Brown: #56290A;
+    --Olive: #A8A359;
+    --LightOlive: #FBFAF0;
+}
+
+
+.HomePageContainer{
+    font-size: 12px;
+}
+
+    .HomePageContainer h1,
+    .HomePageContainer h3{
+        color: var(--Olive);
+    }
+
+    .ExampleInputOutputTable {
+        margin: auto;
+    }
+
+    .ExampleInputOutputTable thead {
+        background-color: #272400;
+        color: #A8A359;
+    }
+
+    .ExampleInputOutputTable tbody tr {
+        background-color: #A8A359;
+        text-align: center;
+    }
+    .ExampleInputOutputTable tbody tr td{
+        background-color: #A8A359;
+        text-align: center;
+        padding: 5px;
+    }
+    

@@ -249,7 +249,7 @@ class BarrnLandAnalysis extends Component {
         var list = [];
         plots.forEach(plot => list.push(<li>{plot}</li>));
         //plots.join()
-        return <ul style={{ width: '240px', height: '150px', overflowY: 'auto' }}>{list}</ul>;
+        return <ul className="FertileLandList" style={{ width: '240px', height: '150px', overflowY: 'auto' }}>{list}</ul>;
     }
 
     //Interactive list to view, highlight, or remove added areas of barren land.
