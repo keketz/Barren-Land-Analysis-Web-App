@@ -82,14 +82,10 @@ Forest Fire Algorithm (node, target-color, replacement-color):
   6. While Q is not empty:
   7. Set n equal to the first element of Q.
   8. Remove first element from Q.
-  9. If the color of the node to the west of n is target-color,
-       set the color of that node to replacement-color and add that node to the end of Q.
- 10. If the color of the node to the east of n is target-color,
-        set the color of that node to replacement-color and add that node to the end of Q.
- 11. If the color of the node to the north of n is target-color,
-         set the color of that node to replacement-color and add that node to the end of Q.
- 12. If the color of the node to the south of n is target-color,
-        set the color of that node to replacement-color and add that node to the end of Q.
+  9. If the color of the node to the west of n is target-color, set the color of that node to replacement-color and add that node to the end of Q.
+ 10. If the color of the node to the east of n is target-color, set the color of that node to replacement-color and add that node to the end of Q.
+ 11. If the color of the node to the north of n is target-color, set the color of that node to replacement-color and add that node to the end of Q.
+ 12. If the color of the node to the south of n is target-color, set the color of that node to replacement-color and add that node to the end of Q.
  13. Continue looping until Q is exhausted.
  14. Return.
 
