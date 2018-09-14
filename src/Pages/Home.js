@@ -5,7 +5,7 @@ class App extends Component {
     render() {
         return (
             <div className="HomePageContainer">
-                <p>This project was tested with Google Chrome. Please use Google Chrome when reviewing.</p>
+                <p>This project was tested with Google Chrome. Please use Google Chrome when reviewing. Navigate to Barren Land to use the Barren Land Analysis App.</p>
 
                 <h1>Project Directions</h1>
                 <p>You have a farm of 400m by 600m where coordinates of the field are from (0, 0) to (399, 599). A portion of the farm is barren, and all the barren land is in the form of rectangles. Due to these rectangles of barren land, the remaining area of fertile land is in no particular shape. An area of fertile land is defined as the largest area of land that is not covered by any of the rectangles of barren land.</p>
