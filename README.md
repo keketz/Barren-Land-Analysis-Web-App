@@ -2,7 +2,7 @@ Barren Land Analysis
 
 Input barren land areas and return the total area of fertile land in ascending order. 
 
-Barren land is input using 4 numbers seperated by a space forming a rectangle representing bottom left x, bottom left y, top righht x, and tope right y. Fertile land is then listed below in ascending order, grouping adjacent fertile plots with one another and outputing the total area for each.
+Barren land is input using 4 numbers separated by a space forming a rectangle representing bottom left x, bottom left y, top righht x, and tope right y. Fertile land is then listed below in ascending order, grouping adjacent fertile plots with one another and outputing the total area for each.
 
 ## Table of Contents
 
