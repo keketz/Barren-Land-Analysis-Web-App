@@ -51,7 +51,7 @@ Sample Outputs
 2. 22816 192608
 
 ## Getting Started
-You can view the project on [Git Hub Pages]('https://keketz.github.io/target-tech-talent-day/')
+You can view the project on [Git Hub Pages](https://keketz.github.io/target-tech-talent-day/)
 
 or 
 
