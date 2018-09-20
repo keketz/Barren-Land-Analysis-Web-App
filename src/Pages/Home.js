@@ -60,12 +60,59 @@ class App extends Component {
                 </ul>
                 
                 <h1>Implementation</h1>
-                <b><a href="https://en.wikipedia.org/wiki/Flood_fill" target="_blank">Flood Fill wiki page</a> listed a few pseudocode solutions. I tried a few after my initial solution destroyed everything in its path.</b>
-                <ul>
-                    <li>First tired the Stack-based recursive implementation(four-way). Results were better but it crashed with a larger area due to a StackOverflowError. Java was able to handle this algorithm but required more memory. Javascript could not.</li>
-                    <li>Then the Forest Fire Algorithm which uses a loop to iterate through a queue of plots. I modified this version to group all adjacent plots and assign each a group number.</li>
-                </ul>
+                <h3>Personal Javascript Solution</h3>
+                <p>The first solution I tried was my own which involved using javascripts array functions to filter, split, join, and push array values around. The solution worked for a small scale, but cause the website to overload at larger scales and crash. I tried the solution in java as well with similar results. Below is the solution: </p>
+                <p>
+                    <div>{"var land = this.state.land;"}</div>
+                    <div>{"var plots = [];"}</div>
+                    <div>{"for (var x = 0; x < land.length; x++) {"}</div>
+                    <div style={{ textIndent: '10px' }}>{"for (var y = 0; y < land[x].length; y++) {"}</div>
+                    <div style={{ textIndent: '20px' }}>{"if (land[x][y]) {plots.push(x + ' ' + y); }" }</div>
+                    <div style={{ textIndent: '10px' }}>{"}"}</div>
+                    <div>{"}"}</div>
+                    <br />
+                    <div>{"var filteredLand = [[plots[0]]];"}</div>
+                    <div>{"plots.splice(0, 1);" }</div>
+                    <div>{"for (x = 0; x < filteredLand.length; x++) {"}</div>
+                    <div style={{ textIndent: '10px' }}>{"for (y = 0; y < filteredLand[x].length; y++) {" }</div>
+                    <div style={{ textIndent: '20px' }}>{"filteredLand[x] = filteredLand[x].concat(plots.filter(plot =>"}</div>
+                    <div style={{ textIndent: '30px' }}>{"(filteredLand[x][y].split(' ')[0] === plot.split(' ')[0] &&" }</div>
+                    <div style={{ textIndent: '30px' }}>{"Math.abs(filteredLand[x][y].split(' ')[1] - plot.split(' ')[1]) === 1 ||"}</div>
+                    <div style={{ textIndent: '30px' }}>{"Math.abs(filteredLand[x][y].split(' ')[0] - plot.split(' ')[0]) === 1 &&" }</div>
+                    <div style={{ textIndent: '30px' }}>{"filteredLand[x][y].split(' ')[1] === plot.split(' ')[1])"}</div>
+                    <div style={{ textIndent: '20px' }}>{"));" }</div>
+                    <br />
+                    <div style={{ textIndent: '20px' }}>{"filteredLand[x].forEach(plot =>"}</div>
+                    <div style={{ textIndent: '30px' }}>{"(plots.indexOf(plot) !== -1) ? plots.splice(plots.indexOf(plot), 1) : null" }</div>
+                    <div style={{ textIndent: '20px' }}>{");"}</div>
+                    <div style={{ textIndent: '10px' }}>{"}" }</div>
+                    <br/>
+                    <div style={{ textIndent: '10px' }}>{"if (plots.length > 0) {"}</div>
+                    <div style={{ textIndent: '20px' }}>{"filteredLand.push([plots[0]]);" }</div>
+                    <div style={{ textIndent: '20px' }}>{"plots.splice(0, 1);"}</div>
+                    <div style={{ textIndent: '10px' }}>{"}" }</div>
+                    <div>{"}"}</div>
+                
+                </p>
 
+                <h3>Flood Fill Algorithm</h3>
+                <p>After this I thought that maybe the solution used to fill areas in a paint program would be good. I found a wiki page explaining the <a href="https://en.wikipedia.org/wiki/Flood_fill" target="_blank">Flood Fill</a> formula. I first tried the four-way Stack-based recursive implementation. Results were better than my original attempt but again a larger scale would be too much for the web app to handle. I built the solution in Java and received a stackOverflow Error.. If i increased the memory used for the solution to 10m, the results would display for a 400 by 600 area without any issues. But that memory requirement was only good for a 400 by 600 area and anything larger would result in a stackOverflow error again. This solution wasn’t exactly scaleable.</p>
+                <b>Flood-fill (node, target-color, replacement-color)</b>
+                <ol>
+                    <li>If target-color is equal to replacement-color, return.</li>
+                    <li>If the color of node is not equal to target-color, return.</li>
+                    <li>Set the color of node to replacement-color.</li>
+                    <li>
+                        Perform Flood-fill (one step to the south of node, target-color, replacement-color).<br />
+                        Perform Flood-fill (one step to the north of node, target-color, replacement-color).<br/>
+                        Perform Flood-fill (one step to the west of node, target-color, replacement-color).<br/>
+                        Perform Flood-fill (one step to the east of node, target-color, replacement-color).
+                    </li>
+                    <li>Return.</li>
+                </ol>
+
+                <h3>Forest Fire Algorithm</h3>
+                <p>Next I tried an alternative flood fill algorithm sometimes called the ‘Forest Fire Algorithm’. A queue-based implementation similar to the recursive solution, except that it pushes nodes into a queue instead of using recursive calls. This solution worked for me and was scalable as far as I could tell. Javascript could handle it without any issues at 400 by 600 as well as at a greater scale 1000 x 1000. However, it is javascript starts to have trouble rendering the land area greater than a 1000 x 1000 area.  This solution is not ideal for much larger scales and would require a scale limit. </p>
                 <b>Forest Fire Algorithm (node, target-color, replacement-color)</b>
                 <ol>
                     <li>If target-color is equal to replacement-color, return.</li>
@@ -84,7 +131,20 @@ class App extends Component {
                     <li>Return.</li>
                  </ol>
 
+                <h3>Extra Features Implemented</h3>
+                <p>I added a few extra features I thought would be a nice addition to the solution using what I know. I’ve worked with react for the last year and thought react would be a fun inclusion to the case study to make it more interactive for the user. </p>
 
+                <h3>Input</h3>
+                <p>Originally, I had the input accept a JSON formatted string consisting of all the barren land areas then separating and parsing the information from there in one single go. This was faster, but it gave a lot of room for error. It was also very restrictive for the user. They would be limited to planning out their input and rereading it if there were any mistakes. So I switched to letting users input one area at a time. That allowed me to do a few interactive things as the user was inputting their areas. Each new barren land input would update the visual representation of the land. It would also update the fertile land area as new barren land was added or removed.</p>
+
+                <h3>Removing Barren Land</h3>
+                <p>Just below the input area is a list of all areas the user has already input. I thought it would be nice to give the user the option to remove areas at any time. If they hover over an area, the barren land is highlighted in both the list and the visual map. Removing the area will remove it from the map, the list, and update the available fertile land areas. </p>
+
+                <h3>Output</h3>
+                <p>The output area is just below the input area. It is listed in ascending order.  The list updates as barren land is added or removed. </p>
+
+                <h3>Land Size</h3>
+                <p>I also added a way for users to update their land area. The land area will not update with a 0 or negative number, but it will update as the size is changed. The entered barren land will be cleared and the user will need to enter new areas. </p>
             </div>
         );
     }
