@@ -12,14 +12,14 @@ Barren land is input using 4 numbers separated by a space forming a rectangle re
 - [Installing](#installing)
 - [Built With](#built-with)
 - [Implementation](#implementation)
-	- Personal Javascript Solution(#personal-javascript-solution)
-	- Flood Fill Algorithm(#flood-fill-algorithm)
-	- Forest Fire Algorithm(#forest-fire-algorithm)
-	- Extra Features Implemented(#extra-features-implemented)
-	- Input(#input)
-	- Removing Barren Land(#removing-barren-land)
-	- Output(#Output)
-	- Land Size(#land-size)
+	- [Personal Javascript Solution](#personal-javascript-solution)
+	- [Flood Fill Algorithm](#flood-fill-algorithm)
+	- [Forest Fire Algorithm](#forest-fire-algorithm)
+	- [Extra Features Implemented](#extra-features-implemented)
+	- [Input](#input)
+	- [Removing Barren Land](#removing-barren-land)
+	- [Output](#Output)
+	- [Land Size](#land-size)
 
 ## Project Instructions
 You have a farm of 400m by 600m where coordinates of the field are from (0, 0) to (399,
